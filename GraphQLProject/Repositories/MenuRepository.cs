@@ -34,7 +34,8 @@ public class MenuRepository : IMenuRepository
 
     public async Task<List<MenuModel>> GetAllMenu()
     {
-        return await _dbContext.Menus.ToListAsync();
+        var ttt = await _dbContext.Menus.ToListAsync();
+        return ttt;
     }
 
     public async Task<MenuModel> GetMenuById(int id)

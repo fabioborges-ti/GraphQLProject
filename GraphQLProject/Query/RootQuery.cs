@@ -4,10 +4,14 @@ using GraphQLProject.Type.Category;
 using GraphQLProject.Type.Menu;
 using GraphQLProject.Type.Reservation;
 
+namespace GraphQLProject.Query;
+
 public class RootQuery : ObjectGraphType
 {
     public RootQuery(IMenuRepository menuRepository, ICategoryRepository categoryRepository, IReservationRepository reservationRepository)
     {
+        Description = "The root query type for all API queries.";
+
         Field<ListGraphType<MenuType>>("menus")
             .ResolveAsync(async context => await menuRepository.GetAllMenu());
 

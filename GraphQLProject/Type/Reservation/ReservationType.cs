@@ -7,6 +7,8 @@ public class ReservationType : ObjectGraphType<ReservationModel>
 {
     public ReservationType()
     {
+        Description = "Represents a table reservation.";
+
         Field(x => x.Id).Description("Unique identifier for the reservation.");
         Field(x => x.CustomerName).Description("Name of the customer making the reservation.");
         Field(x => x.Email).Description("Email address of the customer.");
