@@ -1,7 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 using GraphQLProject.Interfaces;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Menu;
 
 namespace GraphQLProject.Query;
 

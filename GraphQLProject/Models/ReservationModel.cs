@@ -1,6 +1,6 @@
 ﻿namespace GraphQLProject.Models;
 
-public class Reservation
+public class ReservationModel
 {
     public int Id { get; set; }
     public string CustomerName { get; set; }

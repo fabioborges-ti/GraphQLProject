@@ -1,9 +1,9 @@
 ﻿using GraphQL.Types;
 using GraphQLProject.Models;
 
-namespace GraphQLProject.Type;
+namespace GraphQLProject.Type.Reservation;
 
-public class ReservationType : ObjectGraphType<Reservation>
+public class ReservationType : ObjectGraphType<ReservationModel>
 {
     public ReservationType()
     {

@@ -4,6 +4,6 @@ namespace GraphQLProject.Interfaces;
 
 public interface IReservationRepository
 {
-    Task<List<Reservation>> GetReservations();
-    Task<Reservation> AddReservaReservation(Reservation reservation);
+    Task<List<ReservationModel>> GetReservations();
+    Task<ReservationModel> AddReservaReservation(ReservationModel reservation);
 }

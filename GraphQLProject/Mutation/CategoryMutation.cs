@@ -2,7 +2,7 @@
 using GraphQL.Types;
 using GraphQLProject.Interfaces;
 using GraphQLProject.Models;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Category;
 
 namespace GraphQLProject.Mutation;
 
@@ -14,7 +14,7 @@ public class CategoryMutation : ObjectGraphType
             .Arguments(new QueryArgument<CategoryInputType> { Name = "category" })
             .ResolveAsync(async context =>
             {
-                var category = context.GetArgument<Category>("category");
+                var category = context.GetArgument<CategoryModel>("category");
                 return await categoryRepository.AddCategory(category);
             });
 
@@ -23,7 +23,7 @@ public class CategoryMutation : ObjectGraphType
             .ResolveAsync(async context =>
             {
                 var id = context.GetArgument<int>("id");
-                var category = context.GetArgument<Category>("category");
+                var category = context.GetArgument<CategoryModel>("category");
 
                 return await categoryRepository.UpdateCategory(id, category);
             });

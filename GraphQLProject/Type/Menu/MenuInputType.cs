@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-namespace GraphQLProject.Type;
+namespace GraphQLProject.Type.Menu;
 
 public class MenuInputType : InputObjectGraphType
 {
@@ -10,5 +10,6 @@ public class MenuInputType : InputObjectGraphType
         Field<StringGraphType>("name");
         Field<StringGraphType>("description");
         Field<FloatGraphType>("price");
+        Field<IntGraphType>("categoryId");
     }
 }

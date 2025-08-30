@@ -5,7 +5,9 @@ using GraphQLProject.Mutation;
 using GraphQLProject.Query;
 using GraphQLProject.Repositories;
 using GraphQLProject.Schema;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Category;
+using GraphQLProject.Type.Menu;
+using GraphQLProject.Type.Reservation;
 
 namespace GraphQLProject.Extensions
 {

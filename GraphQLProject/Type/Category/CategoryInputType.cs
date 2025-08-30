@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-namespace GraphQLProject.Type;
+namespace GraphQLProject.Type.Category;
 
 public class CategoryInputType : InputObjectGraphType
 {

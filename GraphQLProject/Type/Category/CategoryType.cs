@@ -1,9 +1,9 @@
 ﻿using GraphQL.Types;
 using GraphQLProject.Models;
 
-namespace GraphQLProject.Type;
+namespace GraphQLProject.Type.Category;
 
-public class CategoryType : ObjectGraphType<Category>
+public class CategoryType : ObjectGraphType<CategoryModel>
 {
     public CategoryType()
     {

@@ -1,9 +1,7 @@
 ﻿using GraphQL.Types;
 using GraphQLProject.Models;
 
-namespace GraphQLProject.Type;
-
-public class MenuType : ObjectGraphType<Menu>
+public class MenuType : ObjectGraphType<MenuModel>
 {
     public MenuType()
     {

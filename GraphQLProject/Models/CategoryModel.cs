@@ -1,11 +1,11 @@
 ﻿namespace GraphQLProject.Models;
 
-public class Category
+public class CategoryModel
 {
     public int Id { get; set; }
     public string Name { get; set; }
     public string ImageUrl { get; set; }
 
     // POO
-    public ICollection<Menu> Menus { get; set; }
+    public ICollection<MenuModel> Menus { get; set; }
 }

@@ -2,7 +2,7 @@
 using GraphQL.Types;
 using GraphQLProject.Interfaces;
 using GraphQLProject.Models;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Menu;
 
 namespace GraphQLProject.Mutation;
 
@@ -14,7 +14,7 @@ public class MenuMutation : ObjectGraphType
             .Arguments(new QueryArgument<MenuInputType> { Name = "menu" })
             .ResolveAsync(async context =>
             {
-                return await menuRepository.AddMenu(context.GetArgument<Menu>("menu"));
+                return await menuRepository.AddMenu(context.GetArgument<MenuModel>("menu"));
             });
 
         Field<MenuType>("UpdateMenu")
@@ -22,7 +22,7 @@ public class MenuMutation : ObjectGraphType
             .ResolveAsync(async context =>
             {
                 var menuId = context.GetArgument<int>("menuId");
-                var menu = context.GetArgument<Menu>("menu");
+                var menu = context.GetArgument<MenuModel>("menu");
 
                 return await menuRepository.UpdateMenu(menuId, menu);
             });

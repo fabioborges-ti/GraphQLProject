@@ -13,7 +13,7 @@ public class MenuRepository : IMenuRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Menu> AddMenu(Menu menu)
+    public async Task<MenuModel> AddMenu(MenuModel menu)
     {
         await _dbContext.Menus.AddAsync(menu);
 
@@ -24,24 +24,25 @@ public class MenuRepository : IMenuRepository
 
     public async Task DeleteMenu(int id)
     {
-        var menu = _dbContext.Menus.Find(id);
-
-        await _dbContext.Menus.AddAsync(menu);
-
-        _dbContext.SaveChanges();
+        var menu = await _dbContext.Menus.FindAsync(id);
+        if (menu != null)
+        {
+            _dbContext.Menus.Remove(menu);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 
-    public async Task<List<Menu>> GetAllMenu()
+    public async Task<List<MenuModel>> GetAllMenu()
     {
         return await _dbContext.Menus.ToListAsync();
     }
 
-    public async Task<Menu> GetMenuById(int id)
+    public async Task<MenuModel> GetMenuById(int id)
     {
         return await _dbContext.Menus.FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public async Task<Menu> UpdateMenu(int id, Menu menu)
+    public async Task<MenuModel> UpdateMenu(int id, MenuModel menu)
     {
         var menuResult = await _dbContext.Menus.FindAsync(id);
 

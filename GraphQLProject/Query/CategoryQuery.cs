@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 using GraphQLProject.Interfaces;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Category;
 
 namespace GraphQLProject.Query;
 

@@ -2,7 +2,7 @@
 using GraphQL.Types;
 using GraphQLProject.Interfaces;
 using GraphQLProject.Models;
-using GraphQLProject.Type;
+using GraphQLProject.Type.Reservation;
 
 namespace GraphQLProject.Mutation;
 
@@ -14,7 +14,7 @@ public class ReservationMutation : ObjectGraphType
             .Arguments(new QueryArgument<ReservationInputType> { Name = "reservation" })
             .ResolveAsync(async context =>
             {
-                var reservation = context.GetArgument<Reservation>("reservation");
+                var reservation = context.GetArgument<ReservationModel>("reservation");
                 return await reservationRepository.AddReservaReservation(reservation);
             });
     }

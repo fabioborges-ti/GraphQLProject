@@ -4,8 +4,8 @@ namespace GraphQLProject.Interfaces;
 
 public interface ICategoryRepository
 {
-    Task<List<Category>> GetCategories();
-    Task<Category> AddCategory(Category category);
-    Task<Category> UpdateCategory(int id, Category category);
+    Task<List<CategoryModel>> GetCategories();
+    Task<CategoryModel> AddCategory(CategoryModel category);
+    Task<CategoryModel> UpdateCategory(int id, CategoryModel category);
     Task DeleteCategory(int id);
 }

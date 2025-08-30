@@ -5,9 +5,9 @@ public class GraphQLDbContext : DbContext
 {
     public GraphQLDbContext(DbContextOptions<GraphQLDbContext> options) : base(options) { }
 
-    public DbSet<Menu> Menus { get; set; }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<MenuModel> Menus { get; set; }
+    public DbSet<CategoryModel> Categories { get; set; }
+    public DbSet<ReservationModel> Reservations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,8 +22,8 @@ public class GraphQLDbContext : DbContext
     {
         public static void SeedMenus(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Menu>().HasData(
-                new Menu
+            modelBuilder.Entity<MenuModel>().HasData(
+                new MenuModel
                 {
                     Id = 1,
                     Name = "Pizza Margherita",
@@ -31,7 +31,7 @@ public class GraphQLDbContext : DbContext
                     Price = 45.90,
                     CategoryId = 1
                 },
-                new Menu
+                new MenuModel
                 {
                     Id = 3,
                     Name = "Lasanha Bolonhesa",
@@ -39,7 +39,7 @@ public class GraphQLDbContext : DbContext
                     Price = 38.75,
                     CategoryId = 1
                 },
-                new Menu
+                new MenuModel
                 {
                     Id = 6,
                     Name = "Bife Ancho Grelhado",
@@ -47,7 +47,7 @@ public class GraphQLDbContext : DbContext
                     Price = 59.90,
                     CategoryId = 2
                 },
-                new Menu
+                new MenuModel
                 {
                     Id = 2,
                     Name = "Salada Caesar",
@@ -55,7 +55,7 @@ public class GraphQLDbContext : DbContext
                     Price = 28.90,
                     CategoryId = 3
                 },
-                new Menu
+                new MenuModel
                 {
                     Id = 4,
                     Name = "Salmão Grelhado",
@@ -63,7 +63,7 @@ public class GraphQLDbContext : DbContext
                     Price = 65.00,
                     CategoryId = 4
                 },
-                new Menu
+                new MenuModel
                 {
                     Id = 5,
                     Name = "Tiramisù",
@@ -79,32 +79,32 @@ public class GraphQLDbContext : DbContext
     {
         public static void SeedCategories(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(
-                new Category
+            modelBuilder.Entity<CategoryModel>().HasData(
+                new CategoryModel
                 {
                     Id = 1,
                     Name = "Massas",
                     ImageUrl = "massas.jpg"
                 },
-                new Category
+                new CategoryModel
                 {
                     Id = 2,
                     Name = "Carnes",
                     ImageUrl = "carnes.jpg"
                 },
-                new Category
+                new CategoryModel
                 {
                     Id = 3,
                     Name = "Saladas",
                     ImageUrl = "saladas.jpg"
                 },
-                new Category
+                new CategoryModel
                 {
                     Id = 4,
                     Name = "Peixes",
                     ImageUrl = "peixes.jpg"
                 },
-                new Category
+                new CategoryModel
                 {
                     Id = 5,
                     Name = "Sobremesas",
@@ -118,8 +118,8 @@ public class GraphQLDbContext : DbContext
     {
         public static void SeedReservations(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Reservation>().HasData(
-                new Reservation
+            modelBuilder.Entity<ReservationModel>().HasData(
+                new ReservationModel
                 {
                     Id = 1,
                     CustomerName = "João Silva",
@@ -129,7 +129,7 @@ public class GraphQLDbContext : DbContext
                     SpecialRequest = "Mesa próxima à janela",
                     ReservationDate = new DateTime(2025, 8, 30, 19, 0, 0)
                 },
-                new Reservation
+                new ReservationModel
                 {
                     Id = 2,
                     CustomerName = "Maria Oliveira",

@@ -1,13 +1,20 @@
 ﻿using GraphQL.Types;
-
-namespace GraphQLProject.Query;
+using GraphQLProject.Interfaces;
+using GraphQLProject.Type.Category;
+using GraphQLProject.Type.Menu;
+using GraphQLProject.Type.Reservation;
 
 public class RootQuery : ObjectGraphType
 {
-    public RootQuery()
+    public RootQuery(IMenuRepository menuRepository, ICategoryRepository categoryRepository, IReservationRepository reservationRepository)
     {
-        Field<MenuQuery>(Name = "MenuQuery").Resolve(context => new { });
-        Field<CategoryQuery>(Name = "CategoryQuery").Resolve(context => new { });
-        Field<ReservationQuery>(Name = "ReservationQuery").Resolve(context => new { });
+        Field<ListGraphType<MenuType>>("menus")
+            .ResolveAsync(async context => await menuRepository.GetAllMenu());
+
+        Field<ListGraphType<CategoryType>>("categories")
+            .ResolveAsync(async context => await categoryRepository.GetCategories());
+
+        Field<ListGraphType<ReservationType>>("reservations")
+            .ResolveAsync(async context => await reservationRepository.GetReservations());
     }
 }

@@ -13,7 +13,7 @@ public class ReservationRepository : IReservationRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Reservation> AddReservaReservation(Reservation reservation)
+    public async Task<ReservationModel> AddReservaReservation(ReservationModel reservation)
     {
         _dbContext.Reservations.Add(reservation);
 
@@ -22,7 +22,7 @@ public class ReservationRepository : IReservationRepository
         return reservation;
     }
 
-    public async Task<List<Reservation>> GetReservations()
+    public async Task<List<ReservationModel>> GetReservations()
     {
         return await _dbContext.Reservations.ToListAsync();
     }

@@ -13,12 +13,12 @@ public class CategoryRepository : ICategoryRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Category>> GetCategories()
+    public async Task<List<CategoryModel>> GetCategories()
     {
         return await _dbContext.Categories.ToListAsync();
     }
 
-    public async Task<Category> AddCategory(Category category)
+    public async Task<CategoryModel> AddCategory(CategoryModel category)
     {
         _dbContext.Categories.Add(category);
 
@@ -36,7 +36,7 @@ public class CategoryRepository : ICategoryRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<Category> UpdateCategory(int id, Category category)
+    public async Task<CategoryModel> UpdateCategory(int id, CategoryModel category)
     {
         var result = await _dbContext.Categories.FindAsync(id);
 
