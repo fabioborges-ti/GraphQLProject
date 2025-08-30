@@ -1,6 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 using GraphQLProject.Interfaces;
+using GraphQLProject.Mutation;
 using GraphQLProject.Query;
 using GraphQLProject.Repositories;
 using GraphQLProject.Schema;
@@ -33,8 +34,10 @@ namespace GraphQLProject.Extensions
             services.AddScoped<ReservationQuery>();
             services.AddScoped<RootQuery>();
 
-            //services.AddScoped<MenuMutation>();
-            //services.AddScoped<MenuInputType>();
+            services.AddScoped<MenuMutation>();
+            services.AddScoped<MenuInputType>();
+
+            services.AddScoped<RootMutation>(); // Adicione esta linha
 
             services.AddScoped<ISchema, RootSchema>();
 
