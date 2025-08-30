@@ -37,7 +37,13 @@ namespace GraphQLProject.Extensions
             services.AddScoped<MenuMutation>();
             services.AddScoped<MenuInputType>();
 
-            services.AddScoped<RootMutation>(); // Adicione esta linha
+            services.AddScoped<CategoryMutation>();
+            services.AddScoped<CategoryInputType>();
+
+            services.AddScoped<ReservationMutation>();
+            services.AddScoped<ReservationInputType>();
+
+            services.AddScoped<RootMutation>();
 
             services.AddScoped<ISchema, RootSchema>();
 
