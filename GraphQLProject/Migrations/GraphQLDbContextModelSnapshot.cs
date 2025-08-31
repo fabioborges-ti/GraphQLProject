@@ -21,7 +21,7 @@ namespace GraphQLProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GraphQLProject.Models.Category", b =>
+            modelBuilder.Entity("GraphQLProject.Models.CategoryModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace GraphQLProject.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GraphQLProject.Models.Menu", b =>
+            modelBuilder.Entity("GraphQLProject.Models.MenuModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,6 +81,9 @@ namespace GraphQLProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -97,7 +100,7 @@ namespace GraphQLProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryModelId");
 
                     b.ToTable("Menus");
 
@@ -152,7 +155,7 @@ namespace GraphQLProject.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GraphQLProject.Models.Reservation", b =>
+            modelBuilder.Entity("GraphQLProject.Models.ReservationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -205,16 +208,14 @@ namespace GraphQLProject.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GraphQLProject.Models.Menu", b =>
+            modelBuilder.Entity("GraphQLProject.Models.MenuModel", b =>
                 {
-                    b.HasOne("GraphQLProject.Models.Category", null)
+                    b.HasOne("GraphQLProject.Models.CategoryModel", null)
                         .WithMany("Menus")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryModelId");
                 });
 
-            modelBuilder.Entity("GraphQLProject.Models.Category", b =>
+            modelBuilder.Entity("GraphQLProject.Models.CategoryModel", b =>
                 {
                     b.Navigation("Menus");
                 });
