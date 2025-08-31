@@ -9,9 +9,10 @@ public class MenuInputType : InputObjectGraphType
         Name = "MenuInput";
         Description = "Input type for creating or updating a menu item";
 
-        Field<string>("name").Description("Name of the menu item");
-        Field<string>("description").Description("Detailed description of the menu item");
-        Field<float>("price").Description("Price of the menu item");
-        Field<string>("imageUrl", nullable: true).Description("URL of the menu item's image");
+        Field<NonNullGraphType<StringGraphType>>("name").Description("Name of the menu item");
+        Field<NonNullGraphType<StringGraphType>>("description").Description("Detailed description of the menu item");
+        Field<NonNullGraphType<FloatGraphType>>("price").Description("Price of the menu item");
+        Field<StringGraphType>("imageUrl").Description("URL of the menu item's image");
+        Field<NonNullGraphType<IntGraphType>>("categoryId");
     }
 }

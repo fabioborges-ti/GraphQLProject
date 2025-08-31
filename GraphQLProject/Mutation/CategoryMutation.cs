@@ -19,7 +19,7 @@ public class CategoryMutation : ObjectGraphType
             });
 
         Field<CategoryType>("UpdateCategory")
-            .Arguments(new QueryArgument<IntGraphType> { Name = "id" }, new QueryArgument<CategoryInputType> { Name = "category" })
+            .Arguments(new QueryArgument<IntGraphType> { Name = "categoryId" }, new QueryArgument<CategoryInputType> { Name = "category" })
             .ResolveAsync(async context =>
             {
                 var id = context.GetArgument<int>("id");
@@ -29,12 +29,12 @@ public class CategoryMutation : ObjectGraphType
             });
 
         Field<StringGraphType>("DeleteCategory")
-            .Arguments(new QueryArgument<IntGraphType> { Name = "id" })
+            .Arguments(new QueryArgument<IntGraphType> { Name = "categoryId" })
             .ResolveAsync(async context =>
             {
                 var id = context.GetArgument<int>("id");
                 await categoryRepository.DeleteCategory(id);
-                return $"A categoria com o id {id} foi deletada.";
+                return $"The category against this Id {id} has been deleted.";
             });
     }
 }
