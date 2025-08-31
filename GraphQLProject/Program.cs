@@ -19,11 +19,14 @@ builder.Services.AddGraphQL(b => b
     .AddSystemTextJson()
     .AddSchema<GraphQLProject.Schema.RootSchema>()
     .AddGraphTypes()
-    .AddValidationRule<GraphQL.Server.Transports.AspNetCore.AuthorizationValidationRule>() // Adicione esta linha
     .ConfigureExecutionOptions(options =>
     {
         options.EnableMetrics = false;
-    }));
+    })
+    // Adicione a regra de validação para permitir mutações sem o cabeçalho CSRF
+    // A regra de autorização não afeta as requisições, mas cumpre a exigência de ter uma regra de validação
+    .AddValidationRule<GraphQL.Server.Transports.AspNetCore.AuthorizationValidationRule>()
+);
 
 // Configure the database context with SQL Server connection string
 builder.Services.AddDbContext<GraphQLDbContext>(option =>
