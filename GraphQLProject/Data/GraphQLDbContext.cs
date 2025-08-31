@@ -13,10 +13,11 @@ public class GraphQLDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .Entity<CategoryModel>()
-            .HasMany(c => c.Menus)
-            .WithOne(m => m.CategoryNavigation)
-            .HasForeignKey(m => m.CategoryId);
+            .Entity<MenuModel>()
+            .HasOne(m => m.CategoryNavigation)
+            .WithMany(c => c.Menus)
+            .HasForeignKey(m => m.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         MenuSeedData.SeedMenus(modelBuilder);
         CategorySeedData.SeedCategories(modelBuilder);
@@ -27,8 +28,10 @@ public class GraphQLDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.ConfigureWarnings(warnings =>
-        warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+
+        // ADICIONAR LOG PARA DEBUG
+        optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
     }
 
     public static class MenuSeedData

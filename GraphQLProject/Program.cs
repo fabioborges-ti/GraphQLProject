@@ -1,4 +1,5 @@
-using GraphiQl;
+using GraphQL;
+using GraphQL.Server.Ui.GraphiQL;
 using GraphQL.Types;
 using GraphQLProject.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,12 @@ builder.Services.AddControllers();
 // Register repositories and types
 builder.Services.RegisterRepositoryInterfaces();
 builder.Services.AddGraphQLProjectServices();
+
+// Adicionar GraphQL Server
+builder.Services.AddGraphQL(b => b
+    .AddSystemTextJson()
+    .AddSchema<GraphQLProject.Schema.RootSchema>()
+    .AddGraphTypes());
 
 // Configure the database context with SQL Server connection string
 builder.Services.AddDbContext<GraphQLDbContext>(option =>
@@ -41,8 +48,17 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
-// Use GraphiQL for an interactive GraphQL UI
-app.UseGraphiQl("/graphql");
+// Configurar GraphQL
+app.UseGraphQL<GraphQLProject.Schema.RootSchema>("/graphql");
+
+// Interface GraphiQL para desenvolvimento
+if (app.Environment.IsDevelopment())
+{
+    app.UseGraphQLGraphiQL("/graphiql", new GraphiQLOptions
+    {
+        GraphQLEndPoint = "/graphql"
+    });
+}
 
 // Use the GraphQL endpoint
 app.UseGraphQL<ISchema>();
