@@ -1,5 +1,6 @@
 ﻿using GraphQLProject.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 public class GraphQLDbContext : DbContext
 {
@@ -16,6 +17,12 @@ public class GraphQLDbContext : DbContext
         ReservationSeedData.SeedReservations(modelBuilder);
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.ConfigureWarnings(warnings =>
+        warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
     }
 
     public static class MenuSeedData
