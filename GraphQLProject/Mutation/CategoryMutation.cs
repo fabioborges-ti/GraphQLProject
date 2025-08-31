@@ -22,7 +22,7 @@ public class CategoryMutation : ObjectGraphType
             .Arguments(new QueryArgument<IntGraphType> { Name = "categoryId" }, new QueryArgument<CategoryInputType> { Name = "category" })
             .ResolveAsync(async context =>
             {
-                var id = context.GetArgument<int>("id");
+                var id = context.GetArgument<int>("categoryId");
                 var category = context.GetArgument<CategoryModel>("category");
 
                 return await categoryRepository.UpdateCategory(id, category);

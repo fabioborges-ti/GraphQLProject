@@ -9,7 +9,6 @@ public class ReservationInputType : InputObjectGraphType
         Name = "ReservationInput";
         Description = "Input type for creating or updating a reservation";
 
-        Field<NonNullGraphType<IntGraphType>>("id");
         Field<NonNullGraphType<StringGraphType>>("customerName").Description("Name of the customer making the reservation");
         Field<NonNullGraphType<StringGraphType>>("email").Description("Email address of the customer");
         Field<NonNullGraphType<StringGraphType>>("phoneNumber").Description("Phone number of the customer");

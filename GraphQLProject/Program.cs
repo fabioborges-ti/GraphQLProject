@@ -18,7 +18,12 @@ builder.Services.AddGraphQLProjectServices();
 builder.Services.AddGraphQL(b => b
     .AddSystemTextJson()
     .AddSchema<GraphQLProject.Schema.RootSchema>()
-    .AddGraphTypes());
+    .AddGraphTypes()
+    .AddValidationRule<GraphQL.Server.Transports.AspNetCore.AuthorizationValidationRule>() // Adicione esta linha
+    .ConfigureExecutionOptions(options =>
+    {
+        options.EnableMetrics = false;
+    }));
 
 // Configure the database context with SQL Server connection string
 builder.Services.AddDbContext<GraphQLDbContext>(option =>
