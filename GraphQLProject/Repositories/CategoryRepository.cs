@@ -15,7 +15,7 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<List<CategoryModel>> GetCategories()
     {
-        return await _dbContext.Categories.ToListAsync();
+        return await _dbContext.Categories.Include(c => c.Menus).ToListAsync();
     }
 
     public async Task<CategoryModel> AddCategory(CategoryModel category)

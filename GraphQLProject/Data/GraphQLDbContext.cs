@@ -12,6 +12,12 @@ public class GraphQLDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder
+            .Entity<CategoryModel>()
+            .HasMany(c => c.Menus)
+            .WithOne(m => m.CategoryNavigation)
+            .HasForeignKey(m => m.CategoryId);
+
         MenuSeedData.SeedMenus(modelBuilder);
         CategorySeedData.SeedCategories(modelBuilder);
         ReservationSeedData.SeedReservations(modelBuilder);

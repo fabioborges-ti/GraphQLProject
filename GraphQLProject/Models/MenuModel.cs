@@ -10,4 +10,5 @@ public class MenuModel
 
     // MER
     public int CategoryId { get; set; }
+    public CategoryModel CategoryNavigation { get; set; }
 }
