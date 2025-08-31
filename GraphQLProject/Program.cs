@@ -1,5 +1,4 @@
 using GraphQL;
-using GraphQL.Server.Ui.GraphiQL;
 using GraphQL.Types;
 using GraphQLProject.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +18,6 @@ builder.Services.AddGraphQL(b => b
     .AddSystemTextJson()
     .AddSchema<GraphQLProject.Schema.RootSchema>()
     .AddGraphTypes()
-    .ConfigureExecutionOptions(options =>
-    {
-        options.EnableMetrics = false;
-    })
-    // Adicione a regra de validação para permitir mutações sem o cabeçalho CSRF
-    // A regra de autorização não afeta as requisições, mas cumpre a exigência de ter uma regra de validação
-    .AddValidationRule<GraphQL.Server.Transports.AspNetCore.AuthorizationValidationRule>()
 );
 
 // Configure the database context with SQL Server connection string
@@ -62,10 +54,7 @@ app.UseGraphQL<GraphQLProject.Schema.RootSchema>("/graphql");
 // Interface GraphiQL para desenvolvimento
 if (app.Environment.IsDevelopment())
 {
-    app.UseGraphQLGraphiQL("/graphiql", new GraphiQLOptions
-    {
-        GraphQLEndPoint = "/graphql"
-    });
+    app.UseGraphQLGraphiQL("/graphiql");
 }
 
 // Use the GraphQL endpoint
